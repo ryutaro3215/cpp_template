@@ -1,0 +1,6 @@
+-std=c++17
+-Iincludes
+-Ibuild/_deps/googletest-src/googletest/include
+-Ibuild/_deps/googletest-src/googletest
+-Ibuild/_deps/googletest-src/googlemock/include
+
