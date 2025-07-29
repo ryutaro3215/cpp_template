@@ -6,6 +6,7 @@ NAME = a.out
 
 # 通常ビルド用
 SRCS = $(shell find $(SRCDIR) -name "*.cpp")
+# SRCS = main.cpp ScalarConverter.cpp
 OBJS = $(SRCS:%.cpp=$(OBJS_DIR)/%.o)
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
@@ -19,13 +20,15 @@ TEST_INCLUDES = \
 
 .PHONY: all clean fclean re test runtest
 
+vpath $(SRCDIR)
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CXX) $(CXXFLAGS) $(OBJS) $(INCLUDES) -o $(NAME)
 	@echo "Build complete: $(NAME)"
 
-$(OBJS_DIR)/%.o: %.cpp
+$(OBJS_DIR)/%.o: $(SRCDIR)/%.cpp
 	@mkdir -p $(dir $@)
 	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 	@echo "Compiled: $< successfully"
