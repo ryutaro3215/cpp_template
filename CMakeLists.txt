@@ -17,6 +17,8 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
+# if you want to use google test in C, add library of C code
+# add_library(sample_lib, srcs/sample.c)
 
 # -------------------------# Add the GoogleTest library -------------------------
 # Create a test executable
@@ -26,6 +28,10 @@ add_executable(
 	sample_test
 	srcs/main.cpp
 	tests/main_test.cpp
+
+	#if you want to use C, write below
+	# sample_test
+	# tests/sample_test.c
 )
 
 target_link_libraries(
@@ -33,6 +39,11 @@ target_link_libraries(
 	# example 
 	sample_test
   GTest::gtest_main
+
+	# if you want to use C, write below
+	# sample_test
+	# PRIVATE sample_lib
+	# GTest::gtest_main
 )
 
 add_test(
@@ -66,4 +77,6 @@ add_test(
 
 # -------------------------# Add the GoogleTest library path -------------------------
 target_include_directories(sample_test PRIVATE ${CMAKE_SOURCE_DIR}/includes)
+# if you want to use C, write below
+# target_include_directories(sample_lib PRIVATE ${CMAKE_SOURCE_DIR}/includes)
 # target_include_directories(othertest PRIVATE ${CMAKE_SOURCE_DIR}/includes)

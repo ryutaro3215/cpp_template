@@ -5,8 +5,7 @@ INCLUDES = -I includes
 NAME = a.out
 
 # 通常ビルド用
-SRCS = $(shell find $(SRCDIR) -name "*.cpp")
-# SRCS = main.cpp ScalarConverter.cpp
+SRCS = $(wildcard $(SRCDIR)/*.cpp) 
 OBJS = $(SRCS:%.cpp=$(OBJS_DIR)/%.o)
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
